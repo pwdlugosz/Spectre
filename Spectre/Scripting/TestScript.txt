@@ -1,0 +1,22 @@
+﻿// Sample program //
+
+LEFT_PATH = tpath('C:\Users\pwdlu_000\Documents\Spectre_Projects\Test','Test1');
+X = CREATE_TABLE(LEFT_PATH, { 'KEY', 'X1', 'X2', 'X3', 'Y' });
+Q = { 1D, 0D, 0D, 0D};
+B = { 0.25, -0.50, 0.75, -1.25 };
+
+
+FOREACH(i in 5000)
+{
+	Q[1] = RANDOM.RANDDOUBLE(-1D, 1D);
+	Q[2] = RANDOM.RANDDOUBLE(-1D, 1D);
+	Q[3] = RANDOM.RANDDOUBLE(-1D, 1D);
+	X +> { i % 10 , Q[0], Q[1], Q[2], ARRAY.DOT(Q,B) };
+};
+
+
+FOREACH(V IN X)
+{
+	T = &(X_VALUES);
+
+};

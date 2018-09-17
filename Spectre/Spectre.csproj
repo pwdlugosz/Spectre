@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.props" Condition="Exists('..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9624D685-5DFE-43E3-A42F-5A2EAE586CA0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Spectre</RootNamespace>
+    <AssemblyName>Spectre</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr4.Runtime, Version=4.6.0.0, Culture=neutral, PublicKeyToken=09abb75b9ed49849, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr4.Runtime.4.6.4\lib\net45\Antlr4.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alpha\BigMath.cs" />
+    <Compile Include="Alpha\BinaryTree.cs" />
+    <Compile Include="Alpha\Cards.cs" />
+    <Compile Include="Alpha\Date.cs" />
+    <Compile Include="Alpha\Money.cs" />
+    <Compile Include="Cells\CellArray.cs" />
+    <Compile Include="Cells\CellOperations.cs" />
+    <Compile Include="Control\Communicator.cs" />
+    <Compile Include="Control\DebugUtil.cs" />
+    <Compile Include="Control\Host.cs" />
+    <Compile Include="Control\ScopedHeap.cs" />
+    <Compile Include="Expressions\Expression.cs" />
+    <Compile Include="Expressions\ExpressionFunction.cs" />
+    <Compile Include="Expressions\ExpressionCollection.cs" />
+    <Compile Include="Libraries\ArrayLibrary.cs" />
+    <Compile Include="Libraries\LibraryRandom.cs" />
+    <Compile Include="Libraries\MathLibrary.cs" />
+    <Compile Include="Libraries\TableLibrary.cs" />
+    <Compile Include="Statements\ScriptedStatement.cs" />
+    <Compile Include="Statements\CompileStatement.cs" />
+    <Compile Include="Statements\TableInsert.cs" />
+    <Compile Include="Statements\TableLoop.cs" />
+    <Compile Include="Expressions\Spool.cs" />
+    <Compile Include="Expressions\SystemNameSpaces.cs" />
+    <Compile Include="Expressions\TableExpression.cs" />
+    <Compile Include="Libraries\BaseLibrary.cs" />
+    <Compile Include="Libraries\Library.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cells\CellRandom.cs" />
+    <Compile Include="Cells\Cell.cs" />
+    <Compile Include="Cells\CellAffinity.cs" />
+    <Compile Include="Cells\CellAffinityHelper.cs" />
+    <Compile Include="Cells\CellComparer.cs" />
+    <Compile Include="Cells\CellConverter.cs" />
+    <Compile Include="Cells\CellFormater.cs" />
+    <Compile Include="Cells\CellFunctions.cs" />
+    <Compile Include="Cells\ScalarMatrix.cs" />
+    <Compile Include="Cells\CellParser.cs" />
+    <Compile Include="Cells\CellSerializer.cs" />
+    <Compile Include="Cells\CellValues.cs" />
+    <Compile Include="Scripting\ExpressionVisitor.cs" />
+    <Compile Include="Scripting\ScriptProcessor.cs" />
+    <Compile Include="Scripting\StatementVisitor.cs" />
+    <Compile Include="Scripting\S_Script.g4.lexer.cs">
+      <DependentUpon>S_Script.g4</DependentUpon>
+    </Compile>
+    <Compile Include="Scripting\S_Script.g4.parser.cs">
+      <DependentUpon>S_Script.g4</DependentUpon>
+    </Compile>
+    <Compile Include="Statements\Statement.cs" />
+    <Compile Include="Structures\BitHelper.cs" />
+    <Compile Include="Structures\BString.cs" />
+    <Compile Include="Structures\FloatingQueue.cs" />
+    <Compile Include="Structures\Heap.cs" />
+    <Compile Include="Tables\BinaryRecordTree.cs" />
+    <Compile Include="Tables\Cluster.cs" />
+    <Compile Include="Tables\ClusteredTable.cs" />
+    <Compile Include="Tables\ClusterPage.cs" />
+    <Compile Include="Tables\ClusterState.cs" />
+    <Compile Include="Tables\DerivedIndex.cs" />
+    <Compile Include="Tables\DictionaryTable.cs" />
+    <Compile Include="Tables\HeapTable.cs" />
+    <Compile Include="Tables\IColumns.cs" />
+    <Compile Include="Tables\IElementHeader.cs" />
+    <Compile Include="Tables\Index.cs" />
+    <Compile Include="Tables\IndexCollection.cs" />
+    <Compile Include="Tables\IndexHeader.cs" />
+    <Compile Include="Tables\IReadable.cs" />
+    <Compile Include="Tables\IRecyclable.cs" />
+    <Compile Include="Tables\ITextWritable.cs" />
+    <Compile Include="Tables\Key.cs" />
+    <Compile Include="Tables\KeyAffinity.cs" />
+    <Compile Include="Tables\KeyComparer.cs" />
+    <Compile Include="Tables\Page.cs" />
+    <Compile Include="Tables\PageUID.cs" />
+    <Compile Include="Tables\Record.cs" />
+    <Compile Include="Tables\RecordBuilder.cs" />
+    <Compile Include="Tables\RecordComparer.cs" />
+    <Compile Include="Tables\RecordKey.cs" />
+    <Compile Include="Tables\RecordReader.cs" />
+    <Compile Include="Tables\RecordReaderBase.cs" />
+    <Compile Include="Tables\RecordReaderIndexData.cs" />
+    <Compile Include="Tables\RecordReaderIndexKey.cs" />
+    <Compile Include="Tables\RecordWriter.cs" />
+    <Compile Include="Tables\RecordWriterBase.cs" />
+    <Compile Include="Tables\RecordWriterClustered.cs" />
+    <Compile Include="Tables\RecordWriterDistinct.cs" />
+    <Compile Include="Tables\Schema.cs" />
+    <Compile Include="Tables\ShellTable.cs" />
+    <Compile Include="Tables\SortedPage.cs" />
+    <Compile Include="Tables\Table.cs" />
+    <Compile Include="Tables\TableFunctions.cs" />
+    <Compile Include="Tables\TableHeader.cs" />
+    <Compile Include="Tables\TableImporter.cs" />
+    <Compile Include="Tables\TableRef.cs" />
+    <Compile Include="Tables\TableStore.cs" />
+    <Compile Include="Tables\TableUtil.cs" />
+    <Compile Include="Util\CostCalculator.cs" />
+    <Compile Include="Util\Counter.cs" />
+    <Compile Include="Util\SpecialFunctions.cs" />
+    <Compile Include="Util\StringUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <Antlr4 Include="Scripting\S_Script.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>Spectre.Scripting</CustomToolNamespace>
+      <Listener>True</Listener>
+      <Visitor>True</Visitor>
+      <TargetLanguage>CSharp</TargetLanguage>
+    </Antlr4>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripting\TestScript.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.props'))" />
+    <Error Condition="!Exists('..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.targets'))" />
+  </Target>
+  <Import Project="..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.targets" Condition="Exists('..\packages\Antlr4.CodeGenerator.4.6.4\build\Antlr4.CodeGenerator.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
