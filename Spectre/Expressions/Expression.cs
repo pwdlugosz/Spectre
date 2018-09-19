@@ -910,6 +910,8 @@ namespace Spectre.Expressions
 
                 public override Cell Evaluate(SpoolSpace Memory)
                 {
+                    //Cell x = this._Children[0].Evaluate(Memory);
+                    //Cell y = this._Children[1].Evaluate(Memory);
                     return this._Children[0].Evaluate(Memory) * this._Children[1].Evaluate(Memory);
                 }
 

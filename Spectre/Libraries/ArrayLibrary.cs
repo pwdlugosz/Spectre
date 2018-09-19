@@ -59,6 +59,7 @@ namespace Spectre.Libraries
                 case "TRANSPOSE":
                     return new FuncTranspose(this._Host, null);
                 case "INVERSE":
+                case "MINVERSE":
                     return new FuncInverse(this._Host, null);
                 case "FIRST":
                     return new FuncFirst(this._Host, null);
@@ -142,7 +143,6 @@ namespace Spectre.Libraries
                 Cell Default = (this._Children.Count >= 3 ? this._Children[2].Evaluate(Memory) : CellValues.NullBOOL);
 
                 CellArray x = CellArray.Matrix(RowCount.valueINT, ColumnCount.valueINT, Default);
-
                 return new Cell(x);
 
             }

@@ -171,7 +171,7 @@ namespace Spectre.Cells
         {
 
             CellAffinity x = CellAffinityHelper.Highest(A.AFFINITY, B.AFFINITY);
-
+            
             if (A.IsNull || B.IsNull) return new Cell(x);
 
             if (A.IsArray && B.IsArray && A.ARRAY.Count == B.ARRAY.Count)
@@ -181,7 +181,7 @@ namespace Spectre.Cells
                     y.Append(CellOperations.Multiply(A.ARRAY[i], B.ARRAY[i]));
                 return new Cell(y);
             }
-
+            
             switch (x)
             {
                 case CellAffinity.DOUBLE: return new Cell(A.valueDOUBLE * B.valueDOUBLE);

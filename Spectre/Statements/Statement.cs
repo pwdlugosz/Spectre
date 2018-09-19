@@ -227,9 +227,9 @@ namespace Spectre.Statements
                 {
                     this.AssignVar(Memory);
                 }
-                else if (this._Parameters.Count == 1 && (this._Affinity == AssignmentType.MinusMinus || this._Affinity == AssignmentType.PlusPlus))
+                else if (this._Affinity == AssignmentType.MinusMinus || this._Affinity == AssignmentType.PlusPlus)
                 {
-                    this.AssignArray(Memory);
+                    this.IncrementArray(Memory);
                 }
                 else if (this._Parameters.Count >= 2 && this._Affinity != AssignmentType.MinusMinus && this._Affinity != AssignmentType.PlusPlus)
                 {
@@ -303,22 +303,23 @@ namespace Spectre.Statements
                     throw new Exception("Cannot assign an array without an index");
 
                 Cell x = Memory[this._LibName][this._VarName];
-                if (!x.IsArray)
-                    throw new Exception("Requires an array");
-                //Cell y = this._Parameters[this._Parameters.Count - 1].Evaluate(Memory);
+                if (!x.IsArray) throw new Exception("Requires an array");
 
+                // Find the array //
                 CellArray z = x.valueARRAY;
-                int Offset = (this._Affinity == AssignmentType.PlusPlus || this._Affinity == AssignmentType.MinusMinus ? 0 : 1);
-                int idx = 0;
-                for (int i = 0; i < this._Parameters.Count - Offset - 1; i++)
+                List<int> Indexes = new List<int>();
+                for (int i = 0; i < this._Parameters.Count - 1; i++) // the last parameter is the value to assign
                 {
-                    idx = this._Parameters[i].Evaluate(Memory).valueINT;
-                    if (!x[idx].IsArray)
-                        throw new Exception("Can only access an index from an array");
-                    x = x[idx];
+                    Indexes.Add(this._Parameters[i].Evaluate(Memory).valueINT);
                 }
+                for (int i = 0; i < Indexes.Count - 1; i++) // the last parameter is the index we want to use to assign
+                {
+                    z = z[Indexes[i]].valueARRAY;
+                }
+                int idx = Indexes.Last();
 
-                Cell q = (Offset == 0 ? CellValues.NullINT : this._Parameters[this._Parameters.Count -1].Evaluate(Memory));
+                Cell q = this._Parameters.Last().Evaluate(Memory);
+                
                 switch (this._Affinity)
                 {
 
@@ -366,6 +367,38 @@ namespace Spectre.Statements
 
                 throw new Exception("Operation is invalid");
 
+
+            }
+
+            private void IncrementArray(SpoolSpace Memory)
+            {
+
+                if (this._Parameters.Count < 1)
+                    throw new Exception("Cannot assign an array without an index");
+
+                Cell x = Memory[this._LibName][this._VarName];
+                if (!x.IsArray) throw new Exception("Requires an array");
+
+                // Find the array //
+                CellArray z = x.valueARRAY;
+                List<int> Indexes = new List<int>();
+                for (int i = 0; i < this._Parameters.Count; i++) // the last parameter is the value to assign
+                {
+                    Indexes.Add(this._Parameters[i].Evaluate(Memory).valueINT);
+                }
+                for (int i = 0; i < Indexes.Count - 1; i++) // the last parameter is the index we want to use to assign
+                {
+                    z = z[i].valueARRAY;
+                }
+                int idx = Indexes.Last();
+
+                Cell q = this._Parameters.Last().Evaluate(Memory);
+                if (this._Affinity == AssignmentType.PlusPlus)
+                    z[idx]++;
+                else
+                    z[idx]--;
+                
+                throw new Exception("Operation is invalid");
 
             }
 

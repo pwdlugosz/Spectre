@@ -434,7 +434,7 @@ namespace Spectre.Scripting
             //string SpoolName = (IsNaked ? this._DefaultContext.Peek() : context.name().unit_name()[0].GetText());
             //string VarName = (IsNaked ? context.name().unit_name()[0].GetText() : context.name().unit_name()[1].GetText());
             //return new Expression.Lookup(this._Host, this._Master, SpoolName, VarName);
-
+            
             // Proper name, X.Y //
             if (context.name().unit_name().Length == 2)
             {
@@ -455,6 +455,7 @@ namespace Spectre.Scripting
             {
 
                 string x = context.name().unit_name()[0].GetText();
+
                 foreach (string name in this._Context.Aliases)
                 {
                     if (this._Context[name].Exists(x))

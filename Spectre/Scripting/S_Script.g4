@@ -38,7 +38,8 @@ join_predicate_unit : name (ASSIGN | EQ) name;
 
 // Expressions
 expression
-	: op=(NOT | PLUS | MINUS | QUESTION) expression												# EXPR_Uniary			// -X
+	: expression LBRAC expression RBRAC															# EXPR_Indexer			// M[]
+	| op=(NOT | PLUS | MINUS | QUESTION) expression												# EXPR_Uniary			// -X
 	| expression POW expression																	# EXPR_Power			// X ^ Y
 	| expression op=(MUL | DIV | MOD | DIV2| MOD2) expression									# EXPR_MultDivMod		// X / Y
 	| expression op=(PLUS | MINUS) expression													# EXPR_AddSub			// X + Y
@@ -51,8 +52,7 @@ expression
 	| type																						# EXPR_ExpressionType
 	| unit_name DOT MUL																			# EXPR_WildCard			// X.*
 	| name																						# EXPR_VarName			// X or X.Y
-	| expression LBRAC expression RBRAC															# EXPR_Indexer			// M[]
-
+	
 	| sliteral																					# EXPR_Literal					
 	| LCURL (expression (COMMA expression)*)? RCURL												# EXPR_ArrayLiteral
 	 

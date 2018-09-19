@@ -186,7 +186,7 @@ namespace Spectre.Cells
         // Vectors //
         public static CellArray Vector(int Length, Cell Value)
         {
-            CellArray ca = new CellArray(new List<Cell>(Length));
+            CellArray ca = new CellArray();
             for (int i = 0; i < Length; i++)
                 ca.Append(Value);
             return ca;

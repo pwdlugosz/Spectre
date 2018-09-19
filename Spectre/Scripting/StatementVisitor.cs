@@ -62,31 +62,31 @@ namespace Spectre.Scripting
                 v = Statement.AssignmentType.Mod2Equals;
 
             // Check if we have a table //
-            if (v == Statement.AssignmentType.PlusEquals && this._Host.Spools.Exists(LibName) && this._Host.Spools[LibName].Exists(VarName) && this._Host.Spools[LibName][VarName].Affinity == CellAffinity.TREF)
-            {
-                string tref = this._Host.Spools[LibName][VarName].valueTREF;
-                Table t = this._Host.OpenTable(tref);
-                Expression a = this._expr.Visit(context.expression()[0]);
-                bool ContainsAggregate = (a is Expression.ArrayLiteral && a.ContainsAggregate);
+            //if (v == Statement.AssignmentType.PlusEquals && this._Host.Spools.Exists(LibName) && this._Host.Spools[LibName].Exists(VarName) && this._Host.Spools[LibName][VarName].Affinity == CellAffinity.TREF)
+            //{
+            //    string tref = this._Host.Spools[LibName][VarName].valueTREF;
+            //    Table t = this._Host.OpenTable(tref);
+            //    Expression a = this._expr.Visit(context.expression()[0]);
+            //    bool ContainsAggregate = (a is Expression.ArrayLiteral && a.ContainsAggregate);
 
-                Statement s = null;
-                if (!ContainsAggregate)
-                {
-                    s = new TableInsert.GenericTableInsert(this._Host, this._Master, t);
-                    s.Parameters.Add(a);
-                }
-                else
-                {
-                    s = new TableInsert.DictionGroupBy(this._Host, this._Master, t);
-                    foreach(Expression exp in a.Children)
-                    {
-                        s.Parameters.Add(exp);
-                    }
-                }
+            //    Statement s = null;
+            //    if (!ContainsAggregate)
+            //    {
+            //        s = new TableInsert.GenericTableInsert(this._Host, this._Master, t);
+            //        s.Parameters.Add(a);
+            //    }
+            //    else
+            //    {
+            //        s = new TableInsert.DictionGroupBy(this._Host, this._Master, t);
+            //        foreach(Expression exp in a.Children)
+            //        {
+            //            s.Parameters.Add(exp);
+            //        }
+            //    }
 
-                this._Master = s;
-                return s;
-            }
+            //    this._Master = s;
+            //    return s;
+            //}
 
             Statement x = new Statement.Assignment(this._Host, this._Master, LibName, VarName, v);
 
